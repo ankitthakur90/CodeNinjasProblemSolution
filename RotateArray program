@@ -1,0 +1,7 @@
+#include <algorithm>
+vector<int> rotateArray(vector<int>arr, int k) {
+
+   rotate(arr.begin(),arr.begin()+k,arr.end());
+  
+   return arr;
+}
