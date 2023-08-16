@@ -1,0 +1,76 @@
+link 
+https://www.codingninjas.com/studio/problems/merge-sort_920442?leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=love_babbar_14
+
+
+//// Problem soloution with main fucntion 
+
+#include<iostream>
+#include<vector>
+#include<bits/stdc++.h>
+using namespace std;
+
+int partition(vector<int> &ans,int s,int e ){
+   
+    int pivot = ans[s] ;
+
+    int Count = 0;
+
+    for(int i = (s+1); i <= e ;i++){
+        if(pivot >= ans[i]){
+            Count++;
+        }
+    }
+
+
+    int pivotIndex = s + Count;
+
+    swap(ans[pivotIndex],ans[s]);
+
+
+    int i = s;
+    int j = e;
+
+    while (i < pivotIndex && j > pivotIndex)
+    {
+       while ( pivot>= ans[i])
+       {
+          i++;
+       }
+       while (pivot < ans[j])
+       {
+         j--;
+       }
+       
+       if( (i < pivotIndex && j > pivotIndex)){
+         swap(ans[i++],ans[j--]);
+       }
+    }
+    
+    return pivotIndex;
+
+}
+void QuickSort(vector<int> &arr,int start ,int end){
+
+    if(start >= end){
+        return;
+    }
+
+    int p = partition(arr,start,end);
+
+    QuickSort(arr,start,p-1);
+
+    QuickSort(arr,p+1,end);
+}
+
+int main(int argc, char const *argv[])
+{
+    vector<int > arr = {9,9,9,8,7,6};
+    int e = 5;
+    QuickSort(arr,0,e);
+
+    for(int i = 0 ; i <= e;i++){
+        cout<< arr[i] << " ";
+    }
+    
+    return 0;
+}
