@@ -1,0 +1,63 @@
+Problem Statement Link 
+--> https://www.codingninjas.com/studio/problems/merge-sort_920442?leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=love_babbar_14
+
+ void merging(vector < int > & arr , int s ,int e){
+     
+    int mid = (s+e)/2;
+    
+    int len1 = mid - s+1;
+    int len2 = e -mid;
+
+    int *fisrtArray = new int[len1];
+    int *secondArray = new int[len2];
+    int mainIndexOfArray = s;
+
+    for(int i = 0 ;i<len1;i++){
+        fisrtArray[i] = arr[mainIndexOfArray++];
+    }
+    for(int j = 0 ;j<len2;j++){
+        secondArray[j] = arr[mainIndexOfArray++];
+
+    }
+
+    // merginng
+
+    int index1 = 0 ;
+    int index2  = 0;
+    mainIndexOfArray = s;
+
+    while( (index1 < len1) && (index2 <len2)){
+        if(fisrtArray[index1] < secondArray[index2]){
+            arr[mainIndexOfArray++] =  fisrtArray[index1++];
+        }
+        else{
+            arr[mainIndexOfArray++] = secondArray[index2++];
+        }
+    }
+
+    while(index1 < len1){
+        arr[mainIndexOfArray++] = fisrtArray[index1++];
+    }
+    while(index2 < len2){
+        arr[mainIndexOfArray++] = secondArray[index2++];
+    }
+
+
+ }
+
+ void mergeSorting(vector < int > & arr,int s ,int e){
+    
+    if(s>= e){
+        return ;
+    }
+    int mid = (s+e)/2;
+
+   mergeSorting(arr,  s, mid);
+   mergeSorting(arr,  mid+1, e);
+   merging(arr,s,e);
+}
+
+void mergeSort(vector < int > & arr, int n) {
+    
+    mergeSorting(arr,0,n-1);
+}
